@@ -1,3 +1,4 @@
 @import url('./styles/reset.css');
 @import url('./styles/basic.css');
-@import url('./styles/vars.css');
+@import url('./styles/form.css');
+@import url('./styles/task.css');

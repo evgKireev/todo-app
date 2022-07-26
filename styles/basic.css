@@ -2,10 +2,12 @@ html,
 body {
   height: 100%;
   scroll-behavior: smooth;
+  background-color: #374151;
+  color: #6B7280;
 }
 
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 20px 10px 0;
 }

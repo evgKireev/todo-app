@@ -1,0 +1,32 @@
+      .task {
+        display: flex;
+        margin-top: 1.5em;
+        justify-content: space-between;
+        color: #fff;
+        padding: 1em;
+        margin-bottom: 0.5em;
+        border: none;
+        border-radius: 1em;
+        font-size: 16px;
+        background-color: #1F2937;
+      }
+      
+      .task__content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between !important;
+        align-items: center;
+        margin: 0 20px;
+      }
+      
+      .tasks__date {
+        font-size: 10px;
+      }
+      
+      .delete {
+        border: none;
+        padding: 0;
+        background-color: transparent;
+        color: #EC4899;
+        cursor: pointer;
+      }
