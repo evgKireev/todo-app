@@ -17,6 +17,7 @@ functionalityForm.addEventListener('submit', (e) => {
   tasks.append(taskElement);
 
   const taskInput = document.createElement('input');
+  taskInput.classList.add('task__input')
   taskInput.setAttribute('type', 'checkbox');
   taskElement.append(taskInput);
 
