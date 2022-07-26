@@ -7,7 +7,7 @@ const tasks = document.querySelector('.tasks');
 
 functionalityForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  textTask = functionalityInputAdd.value;
+  textTask = functionalityInputAdd.value.trim();
   if (!textTask) {
     alert('Please enter the task text');
     return;
@@ -32,7 +32,7 @@ functionalityForm.addEventListener('submit', (e) => {
   const taskDate = document.createElement('span');
   taskDate.classList.add('tasks__date');
   taskContent.append(taskDate);
-  taskDate.textContent = new Date();
+  taskDate.textContent = getUserTime(new Date());
 
   const taskButtonDel = document.createElement('button');
   taskButtonDel.classList.add('delete');
@@ -46,3 +46,16 @@ functionalityForm.addEventListener('submit', (e) => {
     this.closest('li').remove()
   })
 });
+
+
+
+const getUserTime = function(date) {
+  let D = date.getDate()
+  let M = date.getMonth() + 1
+  let Y = date.getFullYear()
+  let H = date.getHours()
+  let m = date.getMinutes()
+  m < 10 ? m = '0' + m : m
+  return `${D}-${M}-${Y} | ${H}:${m}`
+}
+getUserTime(new Date());
