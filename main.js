@@ -4,6 +4,7 @@ const functionalityInputAdd = document.querySelector(
 );
 const tasks = document.querySelector('.tasks');
 
+
 functionalityForm.addEventListener('submit', (e) => {
   e.preventDefault();
   textTask = functionalityInputAdd.value;
@@ -11,7 +12,7 @@ functionalityForm.addEventListener('submit', (e) => {
     alert('Please enter the task text');
     return;
   }
-  const taskElement = document.createElement('div');
+  const taskElement = document.createElement('li');
   taskElement.classList.add('task');
   tasks.append(taskElement);
 
@@ -23,18 +24,15 @@ functionalityForm.addEventListener('submit', (e) => {
   taskContent.classList.add('task__content');
   taskElement.appendChild(taskContent);
 
-
   const taskText = document.createElement('p');
   taskText.classList.add('tasks__text');
   taskContent.append(taskText);
   taskText.textContent = textTask;
 
-
   const taskDate = document.createElement('span');
   taskDate.classList.add('tasks__date');
   taskContent.append(taskDate);
-  taskDate.textContent = '26-7-2022';
-
+  taskDate.textContent = new Date();
 
   const taskButtonDel = document.createElement('button');
   taskButtonDel.classList.add('delete');
@@ -44,9 +42,7 @@ functionalityForm.addEventListener('submit', (e) => {
   functionalityInputAdd.focus();
   functionalityInputAdd.value = '';
 
-
-
-  // taskButtonDel.addEventListener('click', () => {
-  //   tasks.removeChild(task)
-  // });
+  taskButtonDel.addEventListener('click', function() {
+    this.closest('li').remove()
+  })
 });
