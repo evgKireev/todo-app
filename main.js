@@ -1,99 +1,108 @@
- todos = getLoocalStorage() || [];
+todos = getLoocalStorage() || [];
+const newTodoForm = document.querySelector('.functionality__form');
+const nameInput = document.querySelector('.functionality__input');
+const tasks = document.querySelector('.tasks');
+const taskActive = document.querySelector('.active');
+const taskCompleted = document.querySelector('.completed-span');
+const inputControls = document.querySelector('.functionality__controls-check');
+const deleteAllTAsk = document.querySelector('.functionality__controls-Alldell');
 
- const newTodoForm = document.querySelector('.functionality__form');
- const nameInput = document.querySelector('.functionality__input');
- const tasks = document.querySelector('.tasks');
 
- newTodoForm.addEventListener('submit', (e) => {
-   e.preventDefault();
-   textTask = nameInput.value.trim();
-   const todo = {
-     text: textTask,
-     date: getUserTime(new Date()),
-     id: new Date().getTime(),
-     isChecked: '',
-   };
+newTodoForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  textTask = nameInput.value.trim();
+  const todo = {
+    text: textTask,
+    date: getUserTime(new Date()),
+    id: new Date().getTime(),
+    isChecked: '',
+  };
 
-   nameInput.value = '';
-   nameInput.focus();
-   if (!textTask) {
-     alert('Please enter the task text');
-     return;
-   }
-   todos.push(todo);
-   setLoocalStorage(todos);
-   DisplayTodos();
- });
+  nameInput.value = '';
+  nameInput.focus();
+  if (!textTask) {
+    alert('Please enter the task text');
+    return;
+  }
+  todos.push(todo);
+  setLoocalStorage(todos);
+  DisplayTodos();
+});
 
- function DisplayTodos() {
-   tasks.innerHTML = '';
-   todos.forEach((todo) => {
-     const taskElement = document.createElement('li');
-     taskElement.classList.add('task');
-     taskElement.setAttribute('id', todo.id);
-     tasks.append(taskElement);
+function DisplayTodos() {
+  tasks.innerHTML = '';
+  todos.forEach((todo) => {
+    const taskElement = document.createElement('li');
+    taskElement.classList.add('task');
+    taskElement.setAttribute('id', todo.id);
+    tasks.append(taskElement);
 
-     const taskInput = document.createElement('input');
-     taskInput.classList.add('task__input');
-     taskInput.setAttribute('type', 'checkbox');
-     taskElement.append(taskInput);
-     taskInput.checked = todo.isChecked;
+    const taskInput = document.createElement('input');
+    taskInput.classList.add('task__input');
+    taskInput.setAttribute('type', 'checkbox');
+    taskElement.append(taskInput);
+    taskInput.checked = todo.isChecked;
 
-     const taskContent = document.createElement('div');
-     taskContent.classList.add('task__content');
-     taskElement.appendChild(taskContent);
+    const taskContent = document.createElement('div');
+    taskContent.classList.add('task__content');
+    taskElement.appendChild(taskContent);
 
-     const taskText = document.createElement('p');
-     taskText.classList.add('tasks__text');
-     taskContent.append(taskText);
-     taskText.textContent = todo.text;
+    const taskText = document.createElement('p');
+    taskText.classList.add('tasks__text');
+    taskContent.append(taskText);
+    taskText.textContent = todo.text;
 
-     const taskDate = document.createElement('span');
-     taskDate.classList.add('tasks__date');
-     taskContent.append(taskDate);
-     taskDate.textContent = todo.date;
+    const taskDate = document.createElement('span');
+    taskDate.classList.add('tasks__date');
+    taskContent.append(taskDate);
+    taskDate.textContent = todo.date;
 
-     const taskButtonDel = document.createElement('button');
-     taskButtonDel.classList.add('delete');
-     taskButtonDel.innerHTML = 'DELETE';
-     taskElement.append(taskButtonDel);
+    const taskButtonDel = document.createElement('button');
+    taskButtonDel.classList.add('delete');
+    taskButtonDel.innerHTML = 'DELETE';
+    taskElement.append(taskButtonDel);
 
-     taskInput.addEventListener('change', (e) => {
-       todo.isChecked = e.target.checked;
-       setLoocalStorage(todos);
+    deleteAllTAsk.addEventListener('click', (e) => {
+      todos = []
+      setLoocalStorage(todos);
+      DisplayTodos();
+    })
 
-       if (todo.isChecked) {
-         taskInput.classList.add('done');
-       } else {
-         taskInput.classList.remove('done');
-       }
-       DisplayTodos();
-     });
+    taskInput.addEventListener('change', (e) => {
+      todo.isChecked = e.target.checked;
+      setLoocalStorage(todos);
 
-     taskButtonDel.addEventListener('click', function(e) {
-       todos = todos.filter((t) => t !== todo);
-       setLoocalStorage(todos);
-       DisplayTodos();
-     });
-   });
- }
- DisplayTodos();
+      if (todo.isChecked) {
+        taskInput.classList.add('done');
+      } else {
+        taskInput.classList.remove('done');
+      }
+    });
 
- const getUserTime = function(date) {
-   let D = date.getDate();
-   let M = date.getMonth() + 1;
-   let Y = date.getFullYear();
-   let H = date.getHours();
-   let m = date.getMinutes();
-   m < 10 ? (m = '0' + m) : m;
-   return `${D}-${M}-${Y} | ${H}:${m}`;
- };
- getUserTime(new Date());
+    taskButtonDel.addEventListener('click', function(e) {
+      todos = todos.filter((t) => t !== todo);
+      setLoocalStorage(todos);
+      DisplayTodos();
+    });
+  });
+}
+DisplayTodos();
 
- function setLoocalStorage(todos) {
-   return localStorage.setItem('todolist', JSON.stringify(todos));
- }
+const getUserTime = function(date) {
+  let D = date.getDate();
+  let M = date.getMonth() + 1;
+  let Y = date.getFullYear();
+  let H = date.getHours();
+  let m = date.getMinutes();
+  m < 10 ? (m = '0' + m) : m;
+  return `${D}-${M}-${Y} | ${H}:${m}`;
+};
+getUserTime(new Date());
 
- function getLoocalStorage() {
-   return JSON.parse(localStorage.getItem('todolist'));
- }
+function setLoocalStorage(todos) {
+  return localStorage.setItem('todolist', JSON.stringify(todos));
+}
+
+function getLoocalStorage() {
+  return JSON.parse(localStorage.getItem('todolist'));
+}
