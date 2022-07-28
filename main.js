@@ -1,134 +1,81 @@
-const functionalityForm = document.querySelector('.functionality__form');
-const functionalityInputAdd = document.querySelector('.functionality__input');
+const todos = getLoocalStorage() || [];
+
+const newTodoForm = document.querySelector('.functionality__form');
+const nameInput = document.querySelector('.functionality__input');
 const tasks = document.querySelector('.tasks');
 
-const todos = getLoocalStorage() || []
-functionalityForm.addEventListener('submit', (e) => {
+newTodoForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  textTask = functionalityInputAdd.value.trim();
+  textTask = nameInput.value.trim();
   const todo = {
     text: textTask,
     date: getUserTime(new Date()),
     id: new Date().getTime(),
-    isChecked: false,
+    isChecked: '',
   };
-  functionalityInputAdd.value = '';
-  functionalityInputAdd.focus();
+
+  nameInput.value = '';
+  nameInput.focus();
   if (!textTask) {
     alert('Please enter the task text');
     return;
   }
   todos.push(todo);
+  console.log(todos);
   setLoocalStorage(todos);
-  render();
+  DisplayTodos();
+
 });
 
 
 function DisplayTodos() {
-  const todoGetStorage = getLoocalStorage();
-  if (todoGetStorage) {
+  tasks.innerHTML = '';
+  todos.forEach((todo) => {
+    const taskElement = document.createElement('li');
+    taskElement.classList.add('task');
+    taskElement.setAttribute('id', todo.id);
+    tasks.append(taskElement);
 
-    todoGetStorage.forEach((el) => {
-      const taskElement = document.createElement('li');
-      taskElement.classList.add('task');
-      tasks.append(taskElement);
+    const taskInput = document.createElement('input');
+    taskInput.classList.add('task__input');
+    taskInput.setAttribute('type', 'checkbox');
+    taskElement.append(taskInput);
+    taskInput.checked = todo.isChecked;
 
-      const taskInput = document.createElement('input');
-      taskInput.classList.add('task__input');
-      taskInput.setAttribute('type', 'checkbox');
-      taskElement.append(taskInput);
+    const taskContent = document.createElement('div');
+    taskContent.classList.add('task__content');
+    taskElement.appendChild(taskContent);
 
-      const taskContent = document.createElement('div');
-      taskContent.classList.add('task__content');
-      taskElement.appendChild(taskContent);
+    const taskText = document.createElement('p');
+    taskText.classList.add('tasks__text');
+    taskContent.append(taskText);
+    taskText.textContent = todo.text;
 
-      const taskText = document.createElement('p');
-      taskText.classList.add('tasks__text');
-      taskContent.append(taskText);
-      taskText.textContent = el.text;
+    const taskDate = document.createElement('span');
+    taskDate.classList.add('tasks__date');
+    taskContent.append(taskDate);
+    taskDate.textContent = todo.date;
 
-      const taskDate = document.createElement('span');
-      taskDate.classList.add('tasks__date');
-      taskContent.append(taskDate);
-      taskDate.textContent = el.date;
+    const taskButtonDel = document.createElement('button');
+    taskButtonDel.classList.add('delete');
+    taskButtonDel.innerHTML = 'DELETE';
+    taskElement.append(taskButtonDel);
 
-      const taskButtonDel = document.createElement('button');
-      taskButtonDel.classList.add('delete');
-      taskButtonDel.innerHTML = 'DELETE';
-      taskElement.append(taskButtonDel);
+    taskInput.addEventListener('change', (e) => {
+      todo.isChecked = e.target.checked;
+      console.log(todo);
+      setLoocalStorage(todos);
+
+      if (todo.isChecked) {
+        taskInput.classList.add('done');
+      } else {
+        taskInput.classList.remove('done');
+      }
+      DisplayTodos();
     });
-  }
+  });
 }
-
 DisplayTodos();
-
-
-
-
-
-
-
-
-
-
-
-
-
-// functionalityForm.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   textTask = functionalityInputAdd.value.trim();
-//   if (!textTask) {
-//     alert('Please enter the task text');
-//     return;
-//   }
-//   const taskElement = document.createElement('li');
-//   taskElement.classList.add('task');
-//   tasks.append(taskElement);
-
-//   const taskInput = document.createElement('input');
-//   taskInput.classList.add('task__input');
-//   taskInput.setAttribute('type', 'checkbox');
-//   taskElement.append(taskInput);
-
-//   const taskContent = document.createElement('div');
-//   taskContent.classList.add('task__content');
-//   taskElement.appendChild(taskContent);
-
-//   const taskText = document.createElement('p');
-//   taskText.classList.add('tasks__text');
-//   taskContent.append(taskText);
-//   taskText.textContent = textTask;
-
-//   const taskDate = document.createElement('span');
-//   taskDate.classList.add('tasks__date');
-//   taskContent.append(taskDate);
-//   taskDate.textContent = getUserTime(new Date());
-
-//   const taskButtonDel = document.createElement('button');
-//   taskButtonDel.classList.add('delete');
-//   taskButtonDel.innerHTML = 'DELETE';
-//   taskElement.append(taskButtonDel);
-
-//   functionalityInputAdd.focus();
-//   functionalityInputAdd.value = '';
-
-//   taskButtonDel.addEventListener('click', function() {
-//     this.closest('li').remove();
-//   });
-
-//   const todo = {
-//     text: textTask,
-//     date: getUserTime(new Date()),
-//     id: new Date().getTime(),
-//     isChecked: false,
-//   };
-//   todos.push(todo);
-//   setName(todos)
-//   e.target.reset()
-
-
-// });
-
 
 
 
@@ -164,3 +111,10 @@ function render() {
   clearElementsLocal();
   DisplayTodos();
 }
+
+
+
+
+// taskButtonDel.addEventListener('click', function() {
+//     this.closest('li').remove();
+//   });
