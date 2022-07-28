@@ -4,6 +4,7 @@ body {
   scroll-behavior: smooth;
   background-color: #374151;
   color: #6B7280;
+  font-family: 'montserrat', sans-serif;
 }
 
 .container {
