@@ -1,0 +1,73 @@
+.functionality__status-todo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.functionality__status-todo span {
+  color: #EC4899;
+}
+
+.functionality__input-search {
+  width: 100%;
+  border: none;
+  border-radius: 1em;
+  font-size: 14px;
+  background-color: #1F2937;
+  margin-bottom: 2em;
+  color: #6B7280;
+  outline: none;
+  padding: 0.5em;
+}
+
+.functionality__controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.functionality__controls-check {
+  width: 25px;
+  height: 25px;
+  margin: 0;
+}
+
+.functionality__controls-Alldell {
+  background-color: #EE204D;
+  border: none;
+  border-radius: 1em;
+  color: #fff;
+  margin-bottom: 1em;
+  cursor: pointer;
+  padding: 1em;
+  flex-basis: 35%;
+  opacity: 50%;
+  pointer-events: none;
+}
+
+.functionality__controls-Compdell {
+  background-color: #00FF7F;
+  border: none;
+  border-radius: 1em;
+  color: #fff;
+  margin-bottom: 1em;
+  cursor: pointer;
+  padding: 1em;
+  flex-basis: 35%;
+  opacity: 50%;
+  pointer-events: none;
+}
+
+.functionality__controls-check:checked~.functionality__controls-Alldell {
+  pointer-events: auto;
+  opacity: 100%;
+}
+
+.functionality__controls-check:checked~.functionality__controls-Compdell {
+  pointer-events: auto;
+  opacity: 100%;
+}

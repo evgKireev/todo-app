@@ -97,7 +97,3 @@
  function getLoocalStorage() {
    return JSON.parse(localStorage.getItem('todolist'));
  }
-
- // taskButtonDel.addEventListener('click', function() {
- //     this.closest('li').remove();
- //   });
