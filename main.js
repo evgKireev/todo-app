@@ -4,9 +4,12 @@ const nameInput = document.querySelector('.functionality__input');
 const tasks = document.querySelector('.tasks');
 const taskActive = document.querySelector('.active');
 const taskCompleted = document.querySelector('.completed-span');
-const inputControls = document.querySelector('.functionality__controls-check');
-const deleteAllTAsk = document.querySelector('.functionality__controls-Alldell');
-
+const deleteAllTAsk = document.querySelector(
+  '.functionality__controls-Alldell'
+);
+const deleteCompleted = document.querySelector(
+  '.functionality__controls-Compdell'
+);
 
 newTodoForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -15,7 +18,7 @@ newTodoForm.addEventListener('submit', (e) => {
     text: textTask,
     date: getUserTime(new Date()),
     id: new Date().getTime(),
-    isChecked: '',
+    isChecked: false,
   };
 
   nameInput.value = '';
@@ -62,11 +65,20 @@ function DisplayTodos() {
     taskButtonDel.innerHTML = 'DELETE';
     taskElement.append(taskButtonDel);
 
-    deleteAllTAsk.addEventListener('click', (e) => {
-      todos = []
+    deleteCompleted.addEventListener('click', (e) => {
+      todos = todos.filter((el) => {
+        if (el.isChecked == false)
+          return todos
+      })
       setLoocalStorage(todos);
       DisplayTodos();
-    })
+    });
+
+    deleteAllTAsk.addEventListener('click', () => {
+      todos = [];
+      setLoocalStorage(todos);
+      DisplayTodos();
+    });
 
     taskInput.addEventListener('change', (e) => {
       todo.isChecked = e.target.checked;
