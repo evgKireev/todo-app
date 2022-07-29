@@ -3,13 +3,15 @@ const newTodoForm = document.querySelector('.functionality__form');
 const nameInput = document.querySelector('.functionality__input');
 const tasks = document.querySelector('.tasks');
 const taskActive = document.querySelector('.active');
-const taskCompleted = document.querySelector('.completed-span');
+let taskCompleted = document.querySelector('.completed-span');
 const deleteAllTAsk = document.querySelector(
   '.functionality__controls-Alldell'
 );
 const deleteCompleted = document.querySelector(
   '.functionality__controls-Compdell'
 );
+const search = document.querySelector('.functionality__input')
+
 
 newTodoForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -67,9 +69,8 @@ function DisplayTodos() {
 
     deleteCompleted.addEventListener('click', (e) => {
       todos = todos.filter((el) => {
-        if (el.isChecked == false)
-          return todos
-      })
+        if (el.isChecked == false) return todos;
+      });
       setLoocalStorage(todos);
       DisplayTodos();
     });
@@ -82,16 +83,26 @@ function DisplayTodos() {
 
     taskInput.addEventListener('change', (e) => {
       todo.isChecked = e.target.checked;
-      setLoocalStorage(todos);
 
       if (todo.isChecked) {
-        taskInput.classList.add('done');
+        taskCompleted.textContent++;
       } else {
-        taskInput.classList.remove('done');
+        taskCompleted.textContent--;
       }
+
+
+      // todos.map((value, index, array) => {
+      //   if (value.isChecked === true) {
+      //     return taskCompleted.textContent++
+      //   } else if (value.isChecked === false) {
+      //     return taskCompleted.textContent--
+      //   }
+      // })
+
     });
 
-    taskButtonDel.addEventListener('click', function(e) {
+
+    taskButtonDel.addEventListener('click', function() {
       todos = todos.filter((t) => t !== todo);
       setLoocalStorage(todos);
       DisplayTodos();
@@ -99,6 +110,12 @@ function DisplayTodos() {
   });
 }
 DisplayTodos();
+
+
+
+
+
+
 
 const getUserTime = function(date) {
   let D = date.getDate();
