@@ -83,23 +83,9 @@ function DisplayTodos() {
 
     taskInput.addEventListener('change', (e) => {
       todo.isChecked = e.target.checked;
-
-      // if (todo.isChecked) {
-      //   taskCompleted.textContent++;
-      // } else {
-      //   taskCompleted.textContent--;
-      // }
-      // setLoocalStorage(todos);
-
-
-      todos.map((value, index, array) => {
-        if (value.isChecked === true) {
-          return taskCompleted.textContent++
-        } else if (value.isChecked === false) {
-          return taskCompleted.textContent--
-        }
-      })
-
+      taskCompleted.textContent = calculateTasksCount(todos);
+      setLoocalStorage(todos);
+      DisplayTodos();
     });
 
 
@@ -135,4 +121,9 @@ function setLoocalStorage(todos) {
 
 function getLoocalStorage() {
   return JSON.parse(localStorage.getItem('todolist'));
+}
+
+function calculateTasksCount(todos) {
+  return todos.filter((value, index, array) => value.isChecked === true).length;
+
 }
