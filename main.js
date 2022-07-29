@@ -3,7 +3,7 @@ const newTodoForm = document.querySelector('.functionality__form');
 const nameInput = document.querySelector('.functionality__input');
 const tasks = document.querySelector('.tasks');
 const taskActive = document.querySelector('.active');
-let taskCompleted = document.querySelector('.completed-span');
+const taskCompleted = document.querySelector('.completed-span');
 const deleteAllTAsk = document.querySelector(
   '.functionality__controls-Alldell'
 );
@@ -12,7 +12,7 @@ const deleteCompleted = document.querySelector(
 );
 const search = document.querySelector('.functionality__input')
 
-
+taskCompleted.textContent = calculateTasksCount(todos);
 newTodoForm.addEventListener('submit', (e) => {
   e.preventDefault();
   textTask = nameInput.value.trim();
@@ -71,12 +71,14 @@ function DisplayTodos() {
       todos = todos.filter((el) => {
         if (el.isChecked == false) return todos;
       });
+      taskCompleted.textContent = calculateTasksCount(todos);
       setLoocalStorage(todos);
       DisplayTodos();
     });
 
     deleteAllTAsk.addEventListener('click', () => {
       todos = [];
+      taskCompleted.textContent = calculateTasksCount(todos);
       setLoocalStorage(todos);
       DisplayTodos();
     });
@@ -91,12 +93,23 @@ function DisplayTodos() {
 
     taskButtonDel.addEventListener('click', function() {
       todos = todos.filter((t) => t !== todo);
+      taskCompleted.textContent = calculateTasksCount(todos);
       setLoocalStorage(todos);
       DisplayTodos();
     });
   });
 }
 DisplayTodos();
+
+
+
+
+
+
+
+
+
+
 
 
 
