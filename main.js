@@ -84,20 +84,21 @@ function DisplayTodos() {
     taskInput.addEventListener('change', (e) => {
       todo.isChecked = e.target.checked;
 
-      if (todo.isChecked) {
-        taskCompleted.textContent++;
-      } else {
-        taskCompleted.textContent--;
-      }
+      // if (todo.isChecked) {
+      //   taskCompleted.textContent++;
+      // } else {
+      //   taskCompleted.textContent--;
+      // }
+      // setLoocalStorage(todos);
 
 
-      // todos.map((value, index, array) => {
-      //   if (value.isChecked === true) {
-      //     return taskCompleted.textContent++
-      //   } else if (value.isChecked === false) {
-      //     return taskCompleted.textContent--
-      //   }
-      // })
+      todos.map((value, index, array) => {
+        if (value.isChecked === true) {
+          return taskCompleted.textContent++
+        } else if (value.isChecked === false) {
+          return taskCompleted.textContent--
+        }
+      })
 
     });
 
