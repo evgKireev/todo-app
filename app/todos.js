@@ -9,6 +9,7 @@ const {
   deleteAllTAsk,
   deleteCompleted,
   search,
+  todoTitle,
 } = todoDomElements;
 
 const {
@@ -31,7 +32,6 @@ function render() {
       id: new Date().getTime(),
       isChecked: false,
     };
-
     nameInput.value = '';
     nameInput.focus();
     if (!textTask) {
@@ -44,6 +44,11 @@ function render() {
   });
 
   function DisplayTodos() {
+    if (todos.length === 0) {
+      todoTitle.textContent = 'No tasks....';
+    } else {
+      todoTitle.textContent = 'Tasks';
+    }
     tasks.innerHTML = '';
     taskActive.textContent = calculateTasksActive(todos);
     taskCompleted.textContent = calculateTasksCompleted(todos);

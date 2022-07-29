@@ -1,4 +1,4 @@
-// const textTask = document.querySelector()
+const todoTitle = document.querySelector('.todo__title');
 const newTodoForm = document.querySelector('.functionality__form');
 const nameInput = document.querySelector('.functionality__input');
 const tasks = document.querySelector('.tasks');
@@ -22,4 +22,5 @@ export const todoDomElements = {
   deleteAllTAsk,
   deleteCompleted,
   search,
-}
+  todoTitle,
+};
