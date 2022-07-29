@@ -12,11 +12,9 @@ const deleteCompleted = document.querySelector(
 );
 const search = document.querySelector('.functionality__input');
 
-taskCompleted.textContent = calculateTasksCompleted(todos);
-taskActive.textContent = calculateTasksActive(todos);
-
 newTodoForm.addEventListener('submit', (e) => {
   e.preventDefault();
+  taskActive.textContent = calculateTasksActive(todos);
   textTask = nameInput.value.trim();
   const todo = {
     text: textTask,
@@ -38,6 +36,8 @@ newTodoForm.addEventListener('submit', (e) => {
 
 function DisplayTodos() {
   tasks.innerHTML = '';
+  taskActive.textContent = calculateTasksActive(todos);
+  taskCompleted.textContent = calculateTasksCompleted(todos);
   todos.forEach((todo) => {
     const taskElement = document.createElement('li');
     taskElement.classList.add('task');
@@ -73,40 +73,34 @@ function DisplayTodos() {
       todos = todos.filter((el) => {
         if (el.isChecked == false) return todos;
       });
-      taskActive.textContent = calculateTasksActive(todos);
-      taskCompleted.textContent = calculateTasksCompleted(todos);
+
       setLoocalStorage(todos);
       DisplayTodos();
     });
 
     deleteAllTAsk.addEventListener('click', () => {
       todos = [];
-      taskActive.textContent = calculateTasksActive(todos);
-      taskCompleted.textContent = calculateTasksCompleted(todos);
+
       setLoocalStorage(todos);
       DisplayTodos();
     });
 
     taskInput.addEventListener('change', (e) => {
       todo.isChecked = e.target.checked;
-      taskActive.textContent = calculateTasksActive(todos);
-      taskCompleted.textContent = calculateTasksCompleted(todos);
+
       setLoocalStorage(todos);
       DisplayTodos();
     });
 
-
     taskButtonDel.addEventListener('click', function() {
       todos = todos.filter((t) => t !== todo);
-      taskActive.textContent = calculateTasksActive(todos);
-      taskCompleted.textContent = calculateTasksCompleted(todos);
+
       setLoocalStorage(todos);
       DisplayTodos();
     });
   });
 }
 DisplayTodos();
-
 
 const getUserTime = function(date) {
   let D = date.getDate();
@@ -129,10 +123,8 @@ function getLoocalStorage() {
 
 function calculateTasksCompleted(todos) {
   return todos.filter((value, index, array) => value.isChecked === true).length;
-
 }
 
-
 function calculateTasksActive(todos) {
-  return todos.filter((value) => value.isChecked === false).length
+  return todos.filter((value) => value.isChecked === false).length;
 }
