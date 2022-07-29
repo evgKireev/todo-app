@@ -2,7 +2,7 @@ todos = getLoocalStorage() || [];
 const newTodoForm = document.querySelector('.functionality__form');
 const nameInput = document.querySelector('.functionality__input');
 const tasks = document.querySelector('.tasks');
-const taskActive = document.querySelector('.active');
+const taskActive = document.querySelector('.active-span');
 const taskCompleted = document.querySelector('.completed-span');
 const deleteAllTAsk = document.querySelector(
   '.functionality__controls-Alldell'
@@ -10,9 +10,11 @@ const deleteAllTAsk = document.querySelector(
 const deleteCompleted = document.querySelector(
   '.functionality__controls-Compdell'
 );
-const search = document.querySelector('.functionality__input')
+const search = document.querySelector('.functionality__input');
 
-taskCompleted.textContent = calculateTasksCount(todos);
+taskCompleted.textContent = calculateTasksCompleted(todos);
+taskActive.textContent = calculateTasksActive(todos);
+
 newTodoForm.addEventListener('submit', (e) => {
   e.preventDefault();
   textTask = nameInput.value.trim();
@@ -71,21 +73,24 @@ function DisplayTodos() {
       todos = todos.filter((el) => {
         if (el.isChecked == false) return todos;
       });
-      taskCompleted.textContent = calculateTasksCount(todos);
+      taskActive.textContent = calculateTasksActive(todos);
+      taskCompleted.textContent = calculateTasksCompleted(todos);
       setLoocalStorage(todos);
       DisplayTodos();
     });
 
     deleteAllTAsk.addEventListener('click', () => {
       todos = [];
-      taskCompleted.textContent = calculateTasksCount(todos);
+      taskActive.textContent = calculateTasksActive(todos);
+      taskCompleted.textContent = calculateTasksCompleted(todos);
       setLoocalStorage(todos);
       DisplayTodos();
     });
 
     taskInput.addEventListener('change', (e) => {
       todo.isChecked = e.target.checked;
-      taskCompleted.textContent = calculateTasksCount(todos);
+      taskActive.textContent = calculateTasksActive(todos);
+      taskCompleted.textContent = calculateTasksCompleted(todos);
       setLoocalStorage(todos);
       DisplayTodos();
     });
@@ -93,28 +98,14 @@ function DisplayTodos() {
 
     taskButtonDel.addEventListener('click', function() {
       todos = todos.filter((t) => t !== todo);
-      taskCompleted.textContent = calculateTasksCount(todos);
+      taskActive.textContent = calculateTasksActive(todos);
+      taskCompleted.textContent = calculateTasksCompleted(todos);
       setLoocalStorage(todos);
       DisplayTodos();
     });
   });
 }
 DisplayTodos();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const getUserTime = function(date) {
@@ -136,7 +127,12 @@ function getLoocalStorage() {
   return JSON.parse(localStorage.getItem('todolist'));
 }
 
-function calculateTasksCount(todos) {
+function calculateTasksCompleted(todos) {
   return todos.filter((value, index, array) => value.isChecked === true).length;
 
+}
+
+
+function calculateTasksActive(todos) {
+  return todos.filter((value) => value.isChecked === false).length
 }
