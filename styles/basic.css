@@ -7,6 +7,7 @@ body {
   font-family: 'montserrat', sans-serif;
   background-image: url('..//images/shape.png');
   background-position: left center;
+  background-repeat: no-repeat;
 }
 
 .container {
