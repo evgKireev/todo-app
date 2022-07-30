@@ -1,7 +1,5 @@
       .task {
-        display: flex;
         margin-top: 1.5em;
-        justify-content: space-between;
         color: #fff;
         padding: 1em;
         margin-bottom: 0.5em;
@@ -11,22 +9,43 @@
         background-color: #1F2937;
       }
       
-      .task__content {
-        width: 100%;
+      .task__label {
         display: flex;
-        justify-content: space-between !important;
+        justify-content: space-between;
         align-items: center;
-        margin: 0 20px;
+        position: relative;
       }
       
       .task__input {
-        width: 25px;
-        height: 25px;
-        margin: 0;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        clip: rect(11px 11px 11px 11px);
+        position: absolute;
+      }
+      
+      .task__span {
+        cursor: pointer;
+        padding: 11px 11px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        background-color: transparent
+      }
+      
+      .task__input:checked+.task__span {
+        border: 1px solid #EC4899;
+        background-image: url('..//images/checbox.svg');
+        background-position: bottom;
       }
       
       .tasks__date {
         font-size: 10px;
+        margin-right: 5px;
+      }
+      
+      .tasks__text {
+        flex-basis: 510px;
+        margin-left: 10px;
       }
       
       .delete {
@@ -44,7 +63,7 @@
         opacity: 100%;
       }
       
-      .task__input:checked~.task__content .tasks__text {
+      .task__input:checked~.tasks__text {
         text-decoration: line-through;
         text-decoration-color: #EC4899;
       }

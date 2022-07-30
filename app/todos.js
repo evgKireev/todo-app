@@ -10,6 +10,7 @@ const {
   deleteCompleted,
   search,
   todoTitle,
+  functionBtn,
 } = todoDomElements;
 
 const {
@@ -58,30 +59,34 @@ function render() {
       taskElement.setAttribute('id', todo.id);
       tasks.append(taskElement);
 
+      const label = document.createElement('label');
+      label.classList.add('task__label');
+      taskElement.append(label);
+
       const taskInput = document.createElement('input');
       taskInput.classList.add('task__input');
       taskInput.setAttribute('type', 'checkbox');
-      taskElement.append(taskInput);
+      label.append(taskInput);
       taskInput.checked = todo.isChecked;
 
-      const taskContent = document.createElement('div');
-      taskContent.classList.add('task__content');
-      taskElement.appendChild(taskContent);
+      const span = document.createElement('span');
+      span.classList.add('task__span');
+      label.append(span);
 
       const taskText = document.createElement('p');
       taskText.classList.add('tasks__text');
-      taskContent.append(taskText);
+      label.append(taskText);
       taskText.textContent = todo.text;
 
       const taskDate = document.createElement('span');
       taskDate.classList.add('tasks__date');
-      taskContent.append(taskDate);
+      label.append(taskDate);
       taskDate.textContent = todo.date;
 
       const taskButtonDel = document.createElement('button');
       taskButtonDel.classList.add('delete');
       taskButtonDel.innerHTML = 'DELETE';
-      taskElement.append(taskButtonDel);
+      label.append(taskButtonDel);
 
       deleteCompleted.addEventListener('click', (e) => {
         todos = todos.filter((el) => {
@@ -110,6 +115,12 @@ function render() {
       });
     });
   }
+
+  functionBtn.addEventListener('change', () => {
+    deleteAllTAsk.classList.toggle('functionality__controls-Alldell-active');
+    deleteCompleted.classList.toggle('functionality__controls-Compdell-active');
+  });
+
   DisplayTodos();
 }
 export { render }

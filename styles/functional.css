@@ -1,73 +1,98 @@
-.functionality__status-todo {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-.functionality__status-todo span {
-  color: #EC4899;
-}
-
-.functionality__input-search {
-  width: 100%;
-  border: none;
-  border-radius: 1em;
-  font-size: 14px;
-  background-color: #1F2937;
-  margin-bottom: 2em;
-  color: #6B7280;
-  outline: none;
-  padding: 0.5em;
-}
-
-.functionality__controls {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1em;
-}
-
-.functionality__controls-check {
-  width: 25px;
-  height: 25px;
-  margin: 0;
-}
-
-.functionality__controls-Alldell {
-  background-color: #EE204D;
-  border: none;
-  border-radius: 1em;
-  color: #fff;
-  margin-bottom: 1em;
-  cursor: pointer;
-  padding: 1em;
-  flex-basis: 35%;
-  opacity: 50%;
-  pointer-events: none;
-}
-
-.functionality__controls-Compdell {
-  background-color: #00FF7F;
-  border: none;
-  border-radius: 1em;
-  color: #fff;
-  margin-bottom: 1em;
-  cursor: pointer;
-  padding: 1em;
-  flex-basis: 35%;
-  opacity: 50%;
-  pointer-events: none;
-}
-
-.functionality__controls-check:checked~.functionality__controls-Alldell {
-  pointer-events: auto;
-  opacity: 100%;
-}
-
-.functionality__controls-check:checked~.functionality__controls-Compdell {
-  pointer-events: auto;
-  opacity: 100%;
-}
+  .functionality__status-todo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  
+  .functionality__status-todo span {
+    color: #EC4899;
+  }
+  
+  .functionality__input-search {
+    width: 100%;
+    border: none;
+    border-radius: 1em;
+    font-size: 14px;
+    background-color: #1F2937;
+    margin-bottom: 2em;
+    color: #6B7280;
+    outline: none;
+    padding: 0.5em;
+  }
+  
+  .functionality__controls {
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .functionality__controls-check {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: none;
+    position: absolute;
+  }
+  
+  .functionality__controls-span {
+    padding: 2px 12px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    background-color: #EC4899;
+  }
+  
+  .functionality__controls-check:checked+.functionality__controls-span {
+    background-image: url('..//images/checbox-w.svg');
+  }
+  
+  .functionality__controls-Alldell {
+    background-color: #EE204D;
+    border: none;
+    border-radius: 1em;
+    color: #fff;
+    cursor: pointer;
+    flex-basis: 35%;
+    padding: 15px 0;
+    pointer-events: auto;
+    opacity: 100%;
+  }
+  
+  .functionality__controls-Compdell {
+    background-color: #00FF7F;
+    border: none;
+    border-radius: 1em;
+    color: #fff;
+    cursor: pointer;
+    flex-basis: 35%;
+    padding: 15px 0;
+    pointer-events: auto;
+    opacity: 100%;
+  }
+  
+  .functionality__controls-Alldell-active {
+    background-color: #EE204D;
+    border: none;
+    border-radius: 1em;
+    color: #fff;
+    cursor: pointer;
+    flex-basis: 35%;
+    padding: 15px 0;
+    opacity: 50%;
+    pointer-events: none;
+  }
+  
+  .functionality__controls-Compdell-active {
+    background-color: #00FF7F;
+    border: none;
+    border-radius: 1em;
+    color: #fff;
+    cursor: pointer;
+    flex-basis: 35%;
+    padding: 15px 0;
+    opacity: 50%;
+    pointer-events: none;
+  }

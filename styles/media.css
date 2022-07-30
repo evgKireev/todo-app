@@ -1,0 +1,27 @@
+@media (max-width: 580px) {
+  * {
+    font-size: 14px;
+  }
+  .functionality__buton {
+    font-size: 10px;
+    height: 46px;
+  }
+  .tasks__date {
+    font-size: 10px;
+  }
+  h1 {
+    font-size: 18px;
+  }
+  .functionality__controls-Compdell {
+    font-size: 12px;
+  }
+  .functionality__controls-Compdell-active {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 430px) {
+  .functionality__controls-Compdell {
+    padding: 10px 0;
+  }
+}

@@ -11,6 +11,9 @@ const deleteCompleted = document.querySelector(
   '.functionality__controls-Compdell'
 );
 const search = document.querySelector('.functionality__input');
+const functionBtn = document.querySelector('.functionality__controls-check');
+
+
 
 
 export const todoDomElements = {
@@ -23,4 +26,5 @@ export const todoDomElements = {
   deleteCompleted,
   search,
   todoTitle,
+  functionBtn,
 };
