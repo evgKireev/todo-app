@@ -55,7 +55,7 @@
     border-radius: 1em;
     color: #fff;
     cursor: pointer;
-    flex-basis: 35%;
+    flex-basis: 25%;
     padding: 15px 0;
     pointer-events: auto;
     opacity: 100%;
@@ -67,7 +67,19 @@
     border-radius: 1em;
     color: #fff;
     cursor: pointer;
-    flex-basis: 35%;
+    flex-basis: 25%;
+    padding: 15px 0;
+    pointer-events: auto;
+    opacity: 100%;
+  }
+  
+  .functionality__controls-last {
+    background-color: #ffd800;
+    border: none;
+    border-radius: 1em;
+    color: #fff;
+    cursor: pointer;
+    flex-basis: 25%;
     padding: 15px 0;
     pointer-events: auto;
     opacity: 100%;
@@ -79,7 +91,7 @@
     border-radius: 1em;
     color: #fff;
     cursor: pointer;
-    flex-basis: 35%;
+    flex-basis: 25%;
     padding: 15px 0;
     opacity: 50%;
     pointer-events: none;
@@ -91,7 +103,19 @@
     border-radius: 1em;
     color: #fff;
     cursor: pointer;
-    flex-basis: 35%;
+    flex-basis: 25%;
+    padding: 15px 0;
+    opacity: 50%;
+    pointer-events: none;
+  }
+  
+  .functionality__controls-last-active {
+    background-color: #ffd800;
+    border: none;
+    border-radius: 1em;
+    color: #fff;
+    cursor: pointer;
+    flex-basis: 25%;
     padding: 15px 0;
     opacity: 50%;
     pointer-events: none;

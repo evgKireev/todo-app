@@ -17,12 +17,16 @@ export function getLoocalStorage() {
 }
 
 export function calculateTasksCompleted(todos) {
-  return todos.filter((value, index, array) => value.isChecked === true).length;
+  return todos.filter((value) => value.isChecked === true).length;
 }
 
 export function calculateTasksActive(todos) {
   return todos.filter((value) => value.isChecked === false).length;
 }
+
+
+
+
 export const todoFunction = {
   getUserTime,
   setLoocalStorage,

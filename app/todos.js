@@ -8,6 +8,7 @@ const {
   taskCompleted,
   deleteAllTAsk,
   deleteCompleted,
+  deleteLast,
   search,
   todoTitle,
   functionBtn,
@@ -23,6 +24,7 @@ const {
 
 function render() {
   let todos = getLoocalStorage() || [];
+  let todosFilter = null;
   newTodoForm.addEventListener('submit', (e) => {
     e.preventDefault();
     taskActive.textContent = calculateTasksActive(todos);
@@ -116,11 +118,30 @@ function render() {
     });
   }
 
+  deleteLast.addEventListener('click', () => {
+    todos.pop();
+    setLoocalStorage(todos);
+    DisplayTodos();
+  });
+
+
+
+  // search.addEventListener('input', () => {
+  //   console.log(search.value);
+
+  //   function taskFilter(todos) {
+  //     return todos.filter((el) => el.text == search.value);
+  //   }
+  //   taskFilter(todos);
+  //   console.log(todos);
+  // });
+
   functionBtn.addEventListener('change', () => {
     deleteAllTAsk.classList.toggle('functionality__controls-Alldell-active');
     deleteCompleted.classList.toggle('functionality__controls-Compdell-active');
+    deleteLast.classList.toggle('functionality__controls-last-active');
   });
 
   DisplayTodos();
 }
-export { render }
+export { render };

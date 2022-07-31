@@ -10,7 +10,8 @@ const deleteAllTAsk = document.querySelector(
 const deleteCompleted = document.querySelector(
   '.functionality__controls-Compdell'
 );
-const search = document.querySelector('.functionality__input');
+const deleteLast = document.querySelector('.functionality__controls-last');
+const search = document.querySelector('.functionality__input-search ');
 const functionBtn = document.querySelector('.functionality__controls-check');
 
 
@@ -24,6 +25,7 @@ export const todoDomElements = {
   taskCompleted,
   deleteAllTAsk,
   deleteCompleted,
+  deleteLast,
   search,
   todoTitle,
   functionBtn,
