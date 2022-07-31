@@ -55,6 +55,7 @@ function render() {
     tasks.innerHTML = '';
     taskActive.textContent = calculateTasksActive(todos);
     taskCompleted.textContent = calculateTasksCompleted(todos);
+
     todos.forEach((todo) => {
       const taskElement = document.createElement('li');
       taskElement.classList.add('task');
@@ -124,17 +125,22 @@ function render() {
     DisplayTodos();
   });
 
-
-
-  // search.addEventListener('input', () => {
-  //   console.log(search.value);
-
-  //   function taskFilter(todos) {
-  //     return todos.filter((el) => el.text == search.value);
-  //   }
-  //   taskFilter(todos);
-  //   console.log(todos);
-  // });
+  search.addEventListener('input', () => {
+    const valueInput = search.value.toLocaleLowerCase()
+    console.log(valueInput);
+    if (valueInput) {
+      todosFilter = todos.filter((el) =>
+        el.text.toLocaleLowerCase().includes(valueInput)
+      );
+      todos = todosFilter;
+      console.log(todos);
+      DisplayTodos();
+    } else {
+      todos = getLoocalStorage();
+      todosFilter = todos;
+      DisplayTodos();
+    }
+  });
 
   functionBtn.addEventListener('change', () => {
     deleteAllTAsk.classList.toggle('functionality__controls-Alldell-active');
