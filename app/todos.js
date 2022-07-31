@@ -12,6 +12,7 @@ const {
   search,
   todoTitle,
   functionBtn,
+  todoFunctiomal,
 } = todoDomElements;
 
 const {
@@ -126,14 +127,12 @@ function render() {
   });
 
   search.addEventListener('input', () => {
-    const valueInput = search.value.toLocaleLowerCase()
-    console.log(valueInput);
+    const valueInput = search.value.toLocaleLowerCase();
     if (valueInput) {
       todosFilter = todos.filter((el) =>
         el.text.toLocaleLowerCase().includes(valueInput)
       );
       todos = todosFilter;
-      console.log(todos);
       DisplayTodos();
     } else {
       todos = getLoocalStorage();
@@ -142,12 +141,25 @@ function render() {
     }
   });
 
+
+  todoFunctiomal.addEventListener('click', (e) => {
+    if (e.target.textContent == 'Show Completed') {
+      todosFilter = todos.filter((el) => el.isChecked == true);
+      todos = todosFilter;
+      DisplayTodos();
+    } else {
+      todos = getLoocalStorage();
+      todosFilter = todos;
+      DisplayTodos();
+    }
+  })
+
+
   functionBtn.addEventListener('change', () => {
     deleteAllTAsk.classList.toggle('functionality__controls-Alldell-active');
     deleteCompleted.classList.toggle('functionality__controls-Compdell-active');
     deleteLast.classList.toggle('functionality__controls-last-active');
   });
-
   DisplayTodos();
 }
 export { render };

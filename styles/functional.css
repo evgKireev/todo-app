@@ -120,3 +120,37 @@
     opacity: 50%;
     pointer-events: none;
   }
+  
+  .todo__functionality {
+    display: flex;
+    justify-content: end;
+  }
+  
+  .todo__show-all {
+    border: none;
+    border-radius: 1em;
+    font-size: 12px;
+    background-color: #1F2937;
+    color: #6B7280;
+    padding: 0.5em;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .todo__show-all:hover {
+    color: #EC4899;
+  }
+  
+  .todo__show-comleted {
+    border: none;
+    border-radius: 1em;
+    font-size: 12px;
+    background-color: #1F2937;
+    color: #6B7280;
+    padding: 0.5em;
+    cursor: pointer;
+  }
+  
+  .todo__show-comleted:hover {
+    color: #EC4899;
+  }

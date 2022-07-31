@@ -13,6 +13,7 @@ const deleteCompleted = document.querySelector(
 const deleteLast = document.querySelector('.functionality__controls-last');
 const search = document.querySelector('.functionality__input-search ');
 const functionBtn = document.querySelector('.functionality__controls-check');
+const todoFunctiomal = document.querySelector('.todo__functionality');
 
 
 
@@ -29,4 +30,5 @@ export const todoDomElements = {
   search,
   todoTitle,
   functionBtn,
+  todoFunctiomal,
 };
