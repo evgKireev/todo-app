@@ -26,6 +26,7 @@ const {
 function render() {
   let todos = getLoocalStorage() || [];
   let todosFilter = null;
+  setLoocalStorage(todos);
   newTodoForm.addEventListener('submit', (e) => {
     e.preventDefault();
     taskActive.textContent = calculateTasksActive(todos);
@@ -112,7 +113,7 @@ function render() {
         DisplayTodos();
       });
 
-      taskButtonDel.addEventListener('click', function() {
+      taskButtonDel.addEventListener('click', function () {
         todos = todos.filter((t) => t !== todo);
         setLoocalStorage(todos);
         DisplayTodos();
@@ -141,7 +142,6 @@ function render() {
     }
   });
 
-
   todoFunctiomal.addEventListener('click', (e) => {
     if (e.target.textContent == 'Show Completed') {
       todosFilter = todos.filter((el) => el.isChecked == true);
@@ -152,8 +152,7 @@ function render() {
       todosFilter = todos;
       DisplayTodos();
     }
-  })
-
+  });
 
   functionBtn.addEventListener('change', () => {
     deleteAllTAsk.classList.toggle('functionality__controls-Alldell-active');

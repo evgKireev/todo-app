@@ -24,9 +24,6 @@ export function calculateTasksActive(todos) {
   return todos.filter((value) => value.isChecked === false).length;
 }
 
-
-
-
 export const todoFunction = {
   getUserTime,
   setLoocalStorage,
